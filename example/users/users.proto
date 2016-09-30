@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service Userer {
+    rpc Put (User) returns (Empty) {}
+    rpc Get (ID) returns (User) {}
+    // streams
+    rpc Putter (stream User) returns (stream Empty) {}
+    rpc Getter (stream ID) returns (stream User) {}
+}
+
+message Empty {}
+
+message ID {
+    int64 ID = 1;
+}
+
+message User {
+    int64 ID = 1;
+    bytes Name = 2;
+    string Email = 3;
+    int64 UpdateddAt = 4;
+}
