@@ -1,22 +1,29 @@
 syntax = "proto3";
 
-service Userer {
-    rpc Put (User) returns (Empty) {}
-    rpc Get (ID) returns (User) {}
+service Store {
+    rpc Put (Object) returns (Empty) {}
+    rpc Get (ID) returns (Object) {}
     // streams
-    rpc Putter (stream User) returns (stream Empty) {}
-    rpc Getter (stream ID) returns (stream User) {}
+    rpc Putter (stream Object) returns (stream Empty) {}
+    rpc Getter (stream ID) returns (stream Object) {}
 }
 
 message Empty {}
 
 message ID {
     int64 ID = 1;
+    string Entity = 2;
+}
+
+message Object {
+    int64 ID = 1;
+    string Data = 2;
+    string Entity = 3;
 }
 
 message User {
     int64 ID = 1;
     bytes Name = 2;
     string Email = 3;
-    int64 UpdateddAt = 4;
+    int64 UpdatedAt = 4;
 }
